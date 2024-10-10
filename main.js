@@ -1,8 +1,8 @@
 // tarea: 3 funciones con parámetros todas, un for o un swithc almenos , console log, alert, prompt, arrays , interactuar con los arrays, variables
-let bienvenida = prompt('¿Deseas ver el menú ?')
+/* let bienvenida = prompt('¿Deseas ver el menú ?')
 console.log(bienvenida)
 let pedido = []
-console.log(pedido)
+console.log(pedido) */
 
 const hamburguesaBacon = { nombre: 'Hamburguesa Bacon', pan: 'Pan de Papa', medallon: 'Roast Beef', gr: 200, lechuga: true, tomate: true, cheddar: true, bacon: true, aderezo: true, valor: 9000 }
 const hamburguesaCheddar = { nombre: 'Hamburguesa Cheddar', pan: 'Pan de Chipa', medallon: 'Roast Beef', gr: 200, lechuga: true, tomate: true, cheddar: true, bacon: false, aderezo: false, valor: 9000 }
@@ -26,7 +26,55 @@ const hamburguesas = [hamburguesaBacon, hamburguesaCheddar, hamburguesaPollo, ha
 const bebidas = [cocaCola, cocaColaLight, fanta, spriteZero, aguaSinGas, aguaConGas]
 const acompaniamientos = [papasFritas, papasCheddar, arosCebolla, batatasFritas]
 
-const mostrarMenuPrincipal = () => {
+let productSection = document.getElementById('productos')
+hamburguesas.forEach((hamburguesa) => {
+    let productCard = document.createElement('div')
+    productCard.className = 'card'
+    productCard.innerHTML = `<b>${hamburguesa.nombre}</b><p> Detalles: ${hamburguesa.pan} -  Medallón : ${hamburguesa.medallon}, ${hamburguesa.gr}gr <p>$ ${hamburguesa.valor}</p><button id=restarUno>-</button><span id=contador>0</span><button id=sumarUno>+</button><button>Agregar al pedido</button>`
+    productSection.appendChild(productCard)
+})
+bebidas.forEach((bebida) => {
+    let productCard = document.createElement('div')
+    productCard.className = 'card'
+    productCard.innerHTML = `<b>${bebida.nombre}</b><p> ${bebida.ml}ml <p>$ ${bebida.valor}</p> <button>Agregar al pedido</button> `
+    productSection.appendChild(productCard)
+})
+acompaniamientos.forEach((acompaniamiento) => {
+    let productCard = document.createElement('div')
+    productCard.className = 'card'
+    productCard.innerHTML = `<b>${acompaniamiento.nombre}</b> <p>$ ${acompaniamiento.valor}</p> <button>Agregar al pedido</button>`
+    productSection.appendChild(productCard)
+})
+
+let buscador = document.getElementById('searchBar')
+buscador.innerHTML = '<label for="buscar">Buscar ...</label> <input type="search">'
+buscador.onkeyup = () => {
+    
+}
+
+let restarUno = document.getElementById('restarUno')
+let sumarUno = document.getElementById('sumaruno')
+let contador = document.genElementById('contador')
+let cantidad = 0
+
+sumarUno.onclick = () => {
+    cantidad++
+    contador.innerHTML = cantidad
+}
+restarUno.onclick = () => {
+    cantidad--
+    contador.innerHTML = cantidad
+}
+
+//carrito : tengo que crear unn elemento como un input que sea un contador y vaya agregando los productod pero que también permita ver una lista del pedido 
+// botón de remove producto : botón eliminiar producto en cada producto del carrito y que sea .onclick, remove()
+// on key up : cuando el usuario tipee una letra, ir mostrando resultados en el buscador en formato de lista
+// contador si quiere poner el + y el - en cada producto : let contador = 0 y después, .onclick , click++ y mostrarlo en el input vacio
+
+
+
+
+/* const mostrarMenuPrincipal = () => {
     if (bienvenida == 'si') {
         let respuesta = parseInt(prompt(`Selecciona una opción del menú.
             Coloca solo el número en tu respuesta:
@@ -99,5 +147,6 @@ function finalizarPedido() {
     mostrarMenuPrincipal();
 }
 
+*/
 
 // practicar lo nuevo visto hoy de objetos
