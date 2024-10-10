@@ -98,3 +98,6 @@ function finalizarPedido() {
     pedido = []
     mostrarMenuPrincipal();
 }
+
+
+// practicar lo nuevo visto hoy de objetos
