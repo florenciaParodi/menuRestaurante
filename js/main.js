@@ -29,7 +29,7 @@ const mostrarMenu = () => {
     productos.forEach((producto) => {
         let productCard = document.createElement('div')
         productCard.className = 'card'
-        productCard.innerHTML = `<b>${producto.nombre}</b><p>$ ${producto.valor}</p><button id=restarUno-${producto.id} >-</button><span id=contador-${producto.id}>1</span><button id=sumarUno-${producto.id}>+</button><button class="agregarButton" id="${producto.id}">Agregar al pedido</button>`
+        productCard.innerHTML = `<b>${producto.nombre}</b><p>$ ${producto.valor}</p><div class="buttons"><button id=restarUno-${producto.id} >-</button><span id=contador-${producto.id}>1</span><button id=sumarUno-${producto.id}>+</button><button class="agregarButton" id="${producto.id}">Agregar</button></div>`
         productSection.appendChild(productCard)
     })
 }
@@ -86,105 +86,4 @@ function eliminarProducto(idProducto) {
     mostrarCarrito();
 }
 
-
-
-
-
-
-/*let restarUno = document.getElementById('restarUno')
-let sumarUno = document.getElementById('sumaruno')
-let contador = document.genElementById('contador')
-let cantidad = 0
-
-sumarUno.onclick = () => {
-    cantidad++
-    contador.innerHTML = cantidad
-}
-restarUno.onclick = () => {
-    cantidad--
-    contador.innerHTML = cantidad
-} */
-
-//carrito : tengo que crear unn elemento como un input que sea un contador y vaya agregando los productos pero que también permita ver una lista del pedido 
-// botón de remove producto : botón eliminiar producto en cada producto del carrito y que sea .onclick, remove()
-// on key up : cuando el usuario tipee una letra, ir mostrando resultados en el buscador en formato de lista
-// contador si quiere poner el + y el - en cada producto : let contador = 0 y después, .onclick , click++ y mostrarlo en el input vacio
-
-
-
-/* const mostrarMenuPrincipal = () => {
-    if (bienvenida == 'si') {
-        let respuesta = parseInt(prompt(`Selecciona una opción del menú.
-            Coloca solo el número en tu respuesta:
-            1 : Hamburguesas
-            2 : Bebidas
-            3 : Acompañamientos
-            4 : Finalizar pedido`))
-        mostrarOpcionElegida(respuesta)
-        console.log(respuesta)
-    }else if (bienvenida == 'no') {
-        alert('Ok serás redirigido al inicio')
-        console.log(bienvenida)
-    } else {
-        alert('Lo siento, esa no es una respuesta valida :(')
-        console.log(bienvenida)
-    }
-}
-mostrarMenuPrincipal();
-
-
-function mostrarOpcionElegida(respuesta) {
-    let menuElegido
-
-    switch (respuesta) {
-        case 1:
-            menuElegido = hamburguesas
-            break
-        case 2:
-            menuElegido = bebidas
-            break
-        case 3:
-            menuElegido = acompaniamientos
-            break
-        case 4:
-            finalizarPedido();
-            break
-    }
-
-    let indice = 1
-    let textoParaMostrar = ''
-
-    for (item of menuElegido) {
-        textoParaMostrar = textoParaMostrar + indice + ' - ' + item.nombre + ' , $ ' + item.valor + '\n'
-        indice++
-    }
-    textoParaMostrar = textoParaMostrar + '0 - Volver al menú principal'
-
-    let itemElegido = prompt(textoParaMostrar);
-
-    if (itemElegido == 0) {
-        mostrarMenuPrincipal();
-    } else {
-        agregarItemAlPedido(itemElegido, menuElegido)
-        mostrarMenuPrincipal();
-    }
-}
-
-
-function agregarItemAlPedido(itemElegido, menuElegido) {
-    pedido.push(menuElegido[itemElegido - 1])
-}
-
-function finalizarPedido() {
-    let valorTotal = 0
-    for (producto of pedido) {
-        valorTotal = valorTotal + producto.valor
-    }
-    alert(' El total de tu pedido es ' + valorTotal + '\n' + ' ¿Tarjeta o Efectivo?')
-    pedido = []
-    mostrarMenuPrincipal();
-}
-
-*/
-
-// practicar lo nuevo visto hoy de objetos
+// la nueva a entregar es : circuito completo, 1 css o framework tipo bootstrap . 2 archivos JS , 1 archivo JSON (clases 8 y 9) (1 fetch a json o/y api) . Array de objetos, si uso una API, igual paso el archivo a JSON. try -catch - finally . arcivos en sus carpetas. el index en la raíz. local storage . ticket, medio de pago y mensaje de confirm. librerias JS (toastify por ej) no console, ni prompt ni alert.
