@@ -29,7 +29,15 @@ const mostrarMenu = () => {
     productos.forEach((producto) => {
         let productCard = document.createElement('div')
         productCard.className = 'card'
-        productCard.innerHTML = `<b>${producto.nombre}</b><p>$ ${producto.valor}</p><div class="buttons"><button id=restarUno-${producto.id} >-</button><span id=contador-${producto.id}>1</span><button id=sumarUno-${producto.id}>+</button><button class="agregarButton" id="${producto.id}">Agregar</button></div>`
+        productCard.innerHTML = 
+        `<b>${producto.nombre}</b>
+        <p>$ ${producto.valor}</p>
+        <div class="buttons">
+        <button class="cantidadButton" onclick="restarUno(${producto.id})">-</button>
+        <span id="contador-${producto.id}">1</span>
+        <button class="cantidadButton" onclick="sumarUno(${producto.id})">+</button>
+        <button class="agregarButton" onclick="agregarAlCarrito(${producto.id})">Agregar</button>
+        </div>`
         productSection.appendChild(productCard)
     })
 }
@@ -57,33 +65,63 @@ mostrarCarrito();
 
 
 
-const agregarAlCarrito = () => {
-    const botonesAgregar = document.querySelectorAll('.agregarButton')
-    botonesAgregar.forEach(boton => {
-        boton.onclick = (e) => {
-            const idProducto = e.currentTarget.id
-            const productoSeleccionado = productos.find(producto => producto.id == idProducto)
-            console.log(productoSeleccionado)
-            let nuevoId
-            if (pedido.length === 0) {
-                nuevoId = 1
-            } else {
-                nuevoId = pedido[pedido.length -1].id + 1
-            }
-            pedido.push({...productoSeleccionado, id: nuevoId, cantidad: 1})
-            mostrarCarrito();
-        }
-    })
-}
-agregarAlCarrito();
+function agregarAlCarrito(idProducto) {
+    const contadorHtml = document.getElementById(`contador-${idProducto}`);
+    const cantidad = parseInt(contadorHtml.innerText);
 
-const agregarFuncionesAlContador = () => {
-    let contador = document.querySelectorAll('contador')
+    const producto = productos.find(p => p.id === idProducto);
+    const cartProducto = pedido.find(p => p.id === idProducto);
+
+    if (cartProducto) {
+        cartProducto.cantidad += cantidad;
+    } else {
+        pedido.push({ ...producto, cantidad: cantidad });
+    }
+
+    contadorHtml.innerText = 1
+
+    mostrarCarrito();
 }
+
 
 function eliminarProducto(idProducto) {
     pedido = pedido.filter(producto => producto.id !== idProducto);
     mostrarCarrito();
 }
 
-// la nueva a entregar es : circuito completo, 1 css o framework tipo bootstrap . 2 archivos JS , 1 archivo JSON (clases 8 y 9) (1 fetch a json o/y api) . Array de objetos, si uso una API, igual paso el archivo a JSON. try -catch - finally . arcivos en sus carpetas. el index en la raíz. local storage . ticket, medio de pago y mensaje de confirm. librerias JS (toastify por ej) no console, ni prompt ni alert.
+function restarUno(idProducto) {
+    const cantidadHtml = document.getElementById(`contador-${idProducto}`)
+    const num = parseInt(cantidadHtml.innerText)
+    if (num !== 1) {
+        cantidadHtml.innerText = num - 1
+    }
+}
+
+function sumarUno(idProducto) {
+    const cantidadHtml = document.getElementById(`contador-${idProducto}`)
+    const num = parseInt(cantidadHtml.innerText)
+    cantidadHtml.innerText = num + 1
+}
+
+// la nueva a entregar es : circuito completo, 1 css o framework tipo bootstrap . 2 archivos JS , 1 archivo JSON (clases 8 y 9) (1 fetch a json o/y api) . Array de objetos, si uso una API, igual paso el archivo a JSON o pasar mi menu a json. try -catch - finally . archivos en sus carpetas. el index en la raíz. local storage . ticket, medio de pago y mensaje de confirm. librerias JS (toastify por ej) no console, ni prompt ni alert.
+
+
+
+/* function finalizarCompra() {
+    alert('Gracias por tu compra!');
+    carrito = [];
+    guardarCarrito();
+    crearCarrito();
+    crearMenu();
+}
+
+function guardarCarrito() {
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+}
+
+function cargarCarrito() {
+    const carritoGuardado = localStorage.getItem('carrito');
+    if (carritoGuardado) {
+        carrito = JSON.parse(carritoGuardado);
+    }
+} */
