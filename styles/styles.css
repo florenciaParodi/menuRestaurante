@@ -9,7 +9,7 @@
 .nombreLocal{
     color: rgb(0, 199, 96);
     font-family: monospace;
-    font-size: 180px;
+    font-size: 100px;
     display: flex;
     justify-content: center;
     margin: 20px;
@@ -41,7 +41,6 @@
     flex-direction: column;
     margin: 10px 50px 50px 50px;
     padding: 20px;
-    border: 2px dashed rgb(0, 199, 96);
     border-radius: 20px;
 }
 
